@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { Repository } from 'typeorm';
 import { Filmes } from '../entity/Filmes';
-import { createFilmeDto } from './dtos/createFilmeDto';
+import { CreateFilmeDTO } from './dtos/CreateFilmeDTO';
 import { CONFIG } from '../constants';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class FilmesService {
     private filmesRepository: Repository<Filmes>,
   ) {}
 
-  async create({ name, year, description }: createFilmeDto): Promise<Filmes> {
+  async create({ name, year, description }: CreateFilmeDTO): Promise<Filmes> {
     const filme = this.filmesRepository.create({ name, year, description });
 
     return await this.filmesRepository.save(filme);
